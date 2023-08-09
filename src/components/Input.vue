@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     change: function ($e) {
-      this.$emit("change", $e.target.value);
+      this.$emit("input", $e.target.value);
     },
   },
 };

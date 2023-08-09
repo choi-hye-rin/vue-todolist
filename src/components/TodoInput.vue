@@ -1,6 +1,6 @@
 <template>
   <div class="input-wrapper">
-    <Input placeholder="Enter here" :value="value" @change="handleInput" />
+    <Input placeholder="Enter here" v-model="todoInput" />
     <Button button-type="button-create" :buttonClick="createTodo">추가</Button>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      tempContent: "",
+      todoInput: "",
     };
   },
   methods: {
@@ -27,10 +27,11 @@ export default {
       const id = `${Math.random()}${dayjs().format("YYMMDDHHmmss")}`;
       const tempItem = {
         id,
-        content: this.tempContent,
+        content: this.todoInput,
         isDone: false,
       };
       this.$store.commit("addTodoItem", tempItem);
+      this.todoInput = "";
     },
 
     handleInput: function (value) {
