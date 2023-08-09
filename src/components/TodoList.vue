@@ -1,7 +1,12 @@
 <template>
   <div class="list">
     <TodoItem v-for="item in todoItems" :key="item.id" :item="item" />
-    <Button button-type="button-remove" :button-click="click">clear all</Button>
+    <Button
+      v-if="todoItems.length > 0"
+      button-type="button-remove"
+      :button-click="click"
+      >clear all</Button
+    >
   </div>
 </template>
 
