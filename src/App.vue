@@ -20,12 +20,8 @@ export default {
   },
   data() {
     return {
-      todoItems: [],
+      todoItems: this.$store.state.TodoList,
     };
-  },
-  created() {
-    const todos = localStorage.getItem("todos");
-    this.todoItems = JSON.parse(todos);
   },
 };
 </script>

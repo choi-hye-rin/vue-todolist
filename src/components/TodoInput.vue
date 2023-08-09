@@ -24,14 +24,12 @@ export default {
   },
   methods: {
     createTodo: function () {
-      const todos = JSON.parse(localStorage.getItem("todos"));
       const tempItem = {
-        id: dayjs().format("YY-MM-DD-HH:mm:ss"),
+        id: dayjs().format("YYMMDDHHmmss"),
         content: this.tempContent,
         isDone: false,
       };
-      todos.push(tempItem);
-      localStorage.setItem("todos", JSON.stringify(todos));
+      this.$store.commit("addTodoItem", tempItem);
     },
 
     handleInput: function (value) {
