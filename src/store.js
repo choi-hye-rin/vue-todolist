@@ -11,7 +11,7 @@ const store = new Vuex.Store({
   mutations: {
     addTodoItem: (state, data) => {
       state.TodoList.push(data);
-      localStorage.setItem("todos", JSON.stringify(data));
+      localStorage.setItem("todos", JSON.stringify(state.TodoList));
     },
   },
   actions: {},
