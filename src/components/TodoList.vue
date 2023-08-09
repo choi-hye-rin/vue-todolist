@@ -1,5 +1,5 @@
 <template>
-  <div class="list">
+  <div class="list" v-if="todoItems.length > 0">
     <TodoItem v-for="item in todoItems" :key="item.id" :item="item" />
     <div class="buttonWrapper">
       <Button
@@ -10,6 +10,7 @@
       >
     </div>
   </div>
+  <div v-else class="noList">휑..</div>
 </template>
 
 <script>
@@ -36,6 +37,11 @@ export default {
 <style>
 .list {
   margin-top: 30px;
+}
+
+.noList {
+  margin-top: 100px;
+  color: #cdcdcd;
 }
 
 .buttonWrapper {
