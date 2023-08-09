@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader />
     <TodoInput />
-    <TodoList :todoItems="todoItems" />
+    <TodoList :todoItems="this.$store.state.TodoList" />
   </div>
 </template>
 
@@ -17,11 +17,6 @@ export default {
     TodoHeader,
     TodoInput,
     TodoList,
-  },
-  data() {
-    return {
-      todoItems: this.$store.state.TodoList,
-    };
   },
 };
 </script>

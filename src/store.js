@@ -9,9 +9,14 @@ const store = new Vuex.Store({
   },
   getters: {},
   mutations: {
-    addTodoItem: (state, data) => {
+    addTodoItem: function (state, data) {
       state.TodoList.push(data);
       localStorage.setItem("todos", JSON.stringify(state.TodoList));
+    },
+    deleteTodoItem: function (state, data) {
+      const newList = state.TodoList.filter((item) => item.id !== data.id);
+      state.TodoList = newList;
+      localStorage.setItem("todos", JSON.stringify(newList));
     },
   },
   actions: {},

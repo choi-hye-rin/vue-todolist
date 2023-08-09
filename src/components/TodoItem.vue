@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     click: function () {
-      console.log("click-->", this.item.content);
+      this.$store.commit("deleteTodoItem", this.item);
     },
   },
 };
