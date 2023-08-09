@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <div>{{ item.content }}</div>
+    <div class="content">{{ item.content }}</div>
     <Button button-type="button-remove" :buttonClick="click">X</Button>
   </div>
 </template>
@@ -33,5 +33,10 @@ export default {
   align-items: center;
   border-bottom: 1px solid #f9fbfc;
   padding: 5px;
+}
+
+.content {
+  font-size: 13px;
+  color: #6c7d8b;
 }
 </style>

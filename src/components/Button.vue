@@ -29,12 +29,12 @@ button {
 }
 
 .button-create {
-  background-color: #99ccff;
+  background-color: #a1c9fa;
   color: white;
 }
 
 .button-remove {
   background-color: transparent;
-  color: #d8d8d8;
+  color: #dde4e9;
 }
 </style>

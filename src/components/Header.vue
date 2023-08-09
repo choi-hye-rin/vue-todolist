@@ -10,6 +10,6 @@ export default {
 
 <style>
 h1 {
-  color: #cdcdcd;
+  color: #6c7d8b;
 }
 </style>

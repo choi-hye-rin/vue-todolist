@@ -1,12 +1,14 @@
 <template>
   <div class="list">
     <TodoItem v-for="item in todoItems" :key="item.id" :item="item" />
-    <Button
-      v-if="todoItems.length > 0"
-      button-type="button-remove"
-      :button-click="click"
-      >clear all</Button
-    >
+    <div class="buttonWrapper">
+      <Button
+        v-if="todoItems.length > 0"
+        button-type="button-remove"
+        :button-click="click"
+        >clear all</Button
+      >
+    </div>
   </div>
 </template>
 
@@ -33,6 +35,10 @@ export default {
 </script>
 <style>
 .list {
+  margin-top: 30px;
+}
+
+.buttonWrapper {
   margin-top: 30px;
 }
 </style>

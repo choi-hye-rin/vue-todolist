@@ -32,10 +32,13 @@ export default {
 input {
   width: 100%;
   border: none;
-  border-bottom: 1px solid #cdcdcd;
+  border-bottom: 1px solid #dde4e9;
 
   &:focus {
     outline: none;
   }
+}
+::placeholder {
+  color: #dde4e9;
 }
 </style>
