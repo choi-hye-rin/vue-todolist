@@ -18,6 +18,10 @@ const store = new Vuex.Store({
       state.TodoList = newList;
       localStorage.setItem("todos", JSON.stringify(newList));
     },
+    clearTodoItem: function (state) {
+      state.TodoList = [];
+      localStorage.setItem("todos", JSON.stringify([]));
+    },
   },
   actions: {},
   modules: {},

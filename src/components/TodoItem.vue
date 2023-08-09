@@ -33,9 +33,5 @@ export default {
   align-items: center;
   border-bottom: 1px solid #f9fbfc;
   padding: 5px;
-
-  &:last-child {
-    border-bottom: none;
-  }
 }
 </style>
