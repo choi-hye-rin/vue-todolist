@@ -13,7 +13,7 @@ export default {
       default: "button-create",
     },
     buttonClick: {
-      type: Object,
+      type: Function,
       default: () => {},
     },
   },
