@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     click: function () {
-      this.$store.commit("clearTodoItem");
+      this.$store.dispatch("deleteAllTodos", this.todoItems);
     },
   },
 };

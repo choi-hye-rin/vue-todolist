@@ -18,6 +18,10 @@ export default {
     TodoInput,
     TodoList,
   },
+  methods: {},
+  mounted() {
+    this.$store.dispatch("getTodoList");
+  },
 };
 </script>
 

@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     click: function () {
-      this.$store.commit("deleteTodoItem", this.item);
+      this.$store.dispatch("deleteTodoItem", this.item.id);
     },
   },
 };

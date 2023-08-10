@@ -30,7 +30,7 @@ export default {
         content: this.todoInput,
         isDone: false,
       };
-      this.$store.commit("addTodoItem", tempItem);
+      this.$store.dispatch("addTodoItem", tempItem);
       this.todoInput = "";
     },
 

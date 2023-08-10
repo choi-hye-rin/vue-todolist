@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import useTodos from "./api/todos";
+
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -9,21 +11,31 @@ const store = new Vuex.Store({
   },
   getters: {},
   mutations: {
-    addTodoItem: function (state, data) {
-      state.TodoList.push(data);
-      localStorage.setItem("todos", JSON.stringify(state.TodoList));
-    },
-    deleteTodoItem: function (state, data) {
-      const newList = state.TodoList.filter((item) => item.id !== data.id);
-      state.TodoList = newList;
-      localStorage.setItem("todos", JSON.stringify(newList));
-    },
-    clearTodoItem: function (state) {
-      state.TodoList = [];
-      localStorage.setItem("todos", JSON.stringify([]));
+    setTodoItem: function (state, data) {
+      state.TodoList = data;
     },
   },
-  actions: {},
+  actions: {
+    async getTodoList() {
+      const res = await useTodos.getTodoList();
+      this.commit("setTodoItem", res.data);
+    },
+    async addTodoItem(store, item) {
+      await useTodos.addTodoItem(item);
+      this.dispatch("getTodoList");
+    },
+    async deleteTodoItem(store, id) {
+      await useTodos.deleteTodoItem(id);
+      this.dispatch("getTodoList");
+    },
+    async deleteAllTodos(store, items) {
+      const ids = items.map((item) => item.id);
+      ids.forEach((id) => {
+        this.dispatch("deleteTodoItem", id);
+      });
+      this.dispatch("getTodoList");
+    },
+  },
   modules: {},
 });
 
