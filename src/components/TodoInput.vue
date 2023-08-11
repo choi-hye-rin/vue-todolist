@@ -1,6 +1,10 @@
 <template>
   <div class="input-wrapper">
-    <Input placeholder="Enter here" v-model="todoInput" />
+    <Input
+      placeholder="Enter here"
+      v-model="todoInput"
+      :handle-submit="createTodo"
+    />
     <Button button-type="button-create" :buttonClick="createTodo">추가</Button>
   </div>
 </template>

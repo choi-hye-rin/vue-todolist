@@ -4,6 +4,7 @@
     :placeholder="placeholder"
     :value="value"
     @input="change"
+    @keyup.enter="handleSubmit()"
   />
 </template>
 
@@ -18,6 +19,10 @@ export default {
     value: {
       type: String,
       default: "",
+    },
+    handleSubmit: {
+      type: Function,
+      default: () => {},
     },
   },
   methods: {
