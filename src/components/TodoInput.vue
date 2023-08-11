@@ -5,7 +5,7 @@
       v-model="todoInput"
       :handle-submit="createTodo"
     />
-    <Button button-type="button-create" :buttonClick="createTodo">추가</Button>
+    <Button button-type="button-create" :button-click="createTodo">추가</Button>
   </div>
 </template>
 

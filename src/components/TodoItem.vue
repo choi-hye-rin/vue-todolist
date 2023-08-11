@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <div class="content">{{ item.content }}</div>
-    <Button button-type="button-remove" :buttonClick="click">X</Button>
+    <Button button-type="button-remove" :button-click="click">X</Button>
   </div>
 </template>
 
