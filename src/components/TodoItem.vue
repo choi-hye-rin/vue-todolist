@@ -2,7 +2,7 @@
   <div>
     <div class="item-wrapper" :class="checkedClass">
       <label class="content-wrapper" :htmlFor="id">
-        <Checkbox
+        <TodoCheck
           :id="id"
           :checked="isChecked"
           :check-change="updateTodoChecked"
@@ -28,13 +28,13 @@
 <script>
 import Button from "./Button.vue";
 import TodoEditModal from "./TodoEditModal.vue";
-import Checkbox from "./Checkbox.vue";
+import TodoCheck from "./TodoCheck.vue";
 
 export default {
   name: "TodoItem",
   components: {
     Button,
-    Checkbox,
+    TodoCheck,
     TodoEditModal,
   },
   props: {
