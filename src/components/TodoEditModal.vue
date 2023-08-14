@@ -6,7 +6,9 @@
         v-model="todoInputEdit"
         :handle-submit="editTodo"
       />
-      <Button>수정하기</Button>
+      <Button button-type="button-create" :button-click="editTodo">
+        수정하기
+      </Button>
     </div>
   </ModalCommon>
 </template>
