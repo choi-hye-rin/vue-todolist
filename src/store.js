@@ -30,10 +30,8 @@ const store = new Vuex.Store({
     },
     async deleteAllTodos(store, items) {
       const ids = items.map((item) => item.id);
-      ids.forEach((id) => {
-        this.dispatch("deleteTodoItem", id);
-      });
-      this.dispatch("getTodoList");
+      await Promise.all(ids.map((id) => useTodos.deleteTodoItem(id)));
+      await this.dispatch("getTodoList");
     },
     async updateTodoItem(store, item) {
       await useTodos.updateTodoItem(item.id, item);
