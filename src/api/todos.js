@@ -15,4 +15,12 @@ export default {
     const res = axios.delete(`${process.env.VUE_APP_API_BASE_URL}/todos/${id}`);
     return res;
   },
+
+  updateTodoItem(id, data) {
+    const res = axios.patch(
+      `${process.env.VUE_APP_API_BASE_URL}/todos/${id}`,
+      data
+    );
+    return res;
+  },
 };

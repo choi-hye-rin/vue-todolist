@@ -35,6 +35,10 @@ const store = new Vuex.Store({
       });
       this.dispatch("getTodoList");
     },
+    async updateTodoItem(store, item) {
+      await useTodos.updateTodoItem(item.id, item);
+      this.dispatch("getTodoList");
+    },
   },
   modules: {},
 });

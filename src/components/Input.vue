@@ -1,4 +1,8 @@
 <template>
+  <!-- 
+    v-bind:value
+    v-on:input
+  -->
   <input
     type="text"
     :placeholder="placeholder"

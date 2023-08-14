@@ -1,17 +1,29 @@
 <template>
-  <div class="item">
-    <div class="content">{{ item.content }}</div>
-    <Button button-type="button-remove" :button-click="click">X</Button>
+  <div>
+    <div class="item">
+      <div class="content">{{ item.content }}</div>
+      <div>
+        <Button button-type="button-edit" :button-click="showEditModal"
+          >✎</Button
+        >
+        <Button button-type="button-remove" :button-click="deleteTodoItem"
+          >X</Button
+        >
+      </div>
+    </div>
+    <TodoEditModal ref="editModal" :todoItem="item" />
   </div>
 </template>
 
 <script>
 import Button from "./Button.vue";
+import TodoEditModal from "./TodoEditModal.vue";
 
 export default {
   name: "TodoItem",
   components: {
     Button,
+    TodoEditModal,
   },
   props: {
     item: {
@@ -19,8 +31,11 @@ export default {
     },
   },
   methods: {
-    click: function () {
+    deleteTodoItem: function () {
       this.$store.dispatch("deleteTodoItem", this.item.id);
+    },
+    showEditModal: function () {
+      this.$refs.editModal.$refs.modal.show();
     },
   },
 };
