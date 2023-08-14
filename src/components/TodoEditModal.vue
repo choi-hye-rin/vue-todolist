@@ -36,6 +36,7 @@ export default {
         content: this.todoInputEdit,
       };
       this.$store.dispatch("updateTodoItem", item);
+      this.$refs.modal.hide();
     },
   },
   created() {

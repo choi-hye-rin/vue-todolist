@@ -24,6 +24,9 @@ export default {
     show() {
       this.isShow = true;
     },
+    hide() {
+      this.isShow = false;
+    },
   },
 };
 </script>
