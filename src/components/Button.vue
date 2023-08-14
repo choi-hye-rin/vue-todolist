@@ -33,8 +33,10 @@ button {
   color: white;
 }
 
-.button-remove {
+.button-remove,
+.button-edit {
   background-color: transparent;
   color: #dde4e9;
+  padding: 10px 5px;
 }
 </style>
