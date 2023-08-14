@@ -4,6 +4,7 @@
     v-on:input
   -->
   <input
+    class="input-text-wrapper"
     type="text"
     :placeholder="placeholder"
     :value="value"
@@ -38,7 +39,7 @@ export default {
 </script>
 
 <style>
-input {
+.input-text-wrapper {
   width: 100%;
   border: none;
   border-bottom: 1px solid #dde4e9;
