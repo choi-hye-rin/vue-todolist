@@ -42,13 +42,13 @@ export default {
 .input-text-wrapper {
   width: 100%;
   border: none;
-  border-bottom: 1px solid #dde4e9;
+  border-bottom: 1px solid #dae1e6;
 
   &:focus {
     outline: none;
   }
 }
 ::placeholder {
-  color: #dde4e9;
+  color: #dae1e6;
 }
 </style>

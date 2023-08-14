@@ -36,7 +36,7 @@ button {
 .button-remove,
 .button-edit {
   background-color: transparent;
-  color: #dde4e9;
+  color: #dae1e6;
   padding: 10px 5px;
 }
 </style>

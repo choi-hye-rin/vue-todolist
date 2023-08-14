@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="item-wrapper">
+    <div class="item-wrapper" :class="checkedClass">
       <div class="content-wrapper">
         <Checkbox
           :id="id"
@@ -10,7 +10,10 @@
         <div class="content">{{ item.content }}</div>
       </div>
       <div>
-        <Button button-type="button-edit" :button-click="showEditModal"
+        <Button
+          v-if="!isChecked"
+          button-type="button-edit"
+          :button-click="showEditModal"
           >✎</Button
         >
         <Button button-type="button-remove" :button-click="deleteTodoItem"
@@ -47,6 +50,12 @@ export default {
       const checked = this.item.isDone;
       return checked;
     },
+    checkedClass() {
+      if (this.item.isDone) {
+        return "done";
+      }
+      return "";
+    },
   },
   methods: {
     deleteTodoItem: function () {
@@ -73,6 +82,12 @@ export default {
   align-items: center;
   border-bottom: 1px solid #f9fbfc;
   padding: 5px;
+}
+
+.done {
+  .content {
+    opacity: 0.3;
+  }
 }
 
 .content-wrapper {
