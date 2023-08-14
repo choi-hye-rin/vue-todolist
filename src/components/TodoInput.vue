@@ -28,6 +28,9 @@ export default {
   },
   methods: {
     createTodo: function () {
+      if (this.todoInput.length === 0) {
+        return;
+      }
       const id = `${Math.random()}${dayjs().format("YYMMDDHHmmss")}`;
       const tempItem = {
         id,
