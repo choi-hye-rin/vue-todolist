@@ -39,11 +39,13 @@ export default {
   border-radius: 12px;
   font-size: 12px;
 
-  padding: 20px;
+  padding: 20px 30px;
   box-shadow: 0 2px 10px -5px #cdcdcd;
 }
 
 .modal-title {
   font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 30px;
 }
 </style>

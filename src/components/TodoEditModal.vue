@@ -1,16 +1,20 @@
 <template>
   <ModalCommon title="TODO 수정하기" ref="modal">
-    <Input
-      placeholder="수정할 값을 입력해주세요."
-      v-model="todoInputEdit"
-      :handle-submit="editTodo"
-    />
+    <div class="edit-modal-wrapper">
+      <Input
+        placeholder="수정할 값을 입력해주세요."
+        v-model="todoInputEdit"
+        :handle-submit="editTodo"
+      />
+      <Button>수정하기</Button>
+    </div>
   </ModalCommon>
 </template>
 
 <script>
 import ModalCommon from "./ModalCommon.vue";
 import Input from "./Input.vue";
+import Button from "./Button.vue";
 
 export default {
   props: {
@@ -21,6 +25,7 @@ export default {
   components: {
     ModalCommon,
     Input,
+    Button,
   },
   methods: {
     editTodo: function () {
@@ -37,4 +42,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.edit-modal-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+</style>
