@@ -1,14 +1,19 @@
 <template>
   <ModalCommon title="TODO 수정하기" ref="modal">
-    <div class="edit-modal-wrapper">
+    <div>
       <Input
         placeholder="수정할 값을 입력해주세요."
         v-model="todoInputEdit"
         :handle-submit="editTodo"
       />
-      <Button button-type="button-create" :button-click="editTodo">
-        수정하기
-      </Button>
+      <div class="button-wrapper">
+        <Button button-type="button-create" :button-click="editTodo">
+          수정하기
+        </Button>
+        <Button button-type="button-remove" :button-click="closeModal">
+          닫기
+        </Button>
+      </div>
     </div>
   </ModalCommon>
 </template>
@@ -38,6 +43,9 @@ export default {
       this.$store.dispatch("updateTodoItem", item);
       this.$refs.modal.hide();
     },
+    closeModal: function () {
+      this.$refs.modal.hide();
+    },
   },
   created() {
     this.todoInputEdit = this.todoItem.content;
@@ -46,9 +54,10 @@ export default {
 </script>
 
 <style>
-.edit-modal-wrapper {
+.button-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 5px;
+  margin-top: 30px;
 }
 </style>

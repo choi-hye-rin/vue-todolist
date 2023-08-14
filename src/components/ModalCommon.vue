@@ -35,15 +35,18 @@ export default {
 .modal-wrapper {
   min-width: 200px;
   position: fixed;
-  top: 150px;
-  left: 130px;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, 0%);
 
   background-color: white;
   border-radius: 12px;
   font-size: 12px;
 
-  padding: 20px 30px;
   box-shadow: 0 2px 10px -5px #cdcdcd;
+  padding: 20px 30px;
+
+  z-index: 10;
 }
 
 .modal-title {
