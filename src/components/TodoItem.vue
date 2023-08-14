@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="item-wrapper" :class="checkedClass">
-      <div class="content-wrapper">
+      <label class="content-wrapper" :htmlFor="id">
         <Checkbox
           :id="id"
           :checked="isChecked"
           :check-change="updateTodoChecked"
         />
         <div class="content">{{ item.content }}</div>
-      </div>
-      <div>
+      </label>
+      <div class="button-wrapper">
         <Button
           v-if="!isChecked"
           button-type="button-edit"
@@ -77,26 +77,33 @@ export default {
 
 <style>
 .item-wrapper {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 50px;
   align-items: center;
   border-bottom: 1px solid #f9fbfc;
   padding: 5px;
+  text-align: left;
+
+  .content-wrapper {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+
+    .content {
+      width: 100%;
+      font-size: 13px;
+      color: #6c7d8b;
+    }
+  }
+
+  .button-wrapper {
+    text-align: right;
+  }
 }
 
 .done {
   .content {
     opacity: 0.3;
-  }
-}
-
-.content-wrapper {
-  display: flex;
-  gap: 10px;
-
-  .content {
-    font-size: 13px;
-    color: #6c7d8b;
   }
 }
 </style>

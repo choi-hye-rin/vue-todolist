@@ -54,7 +54,7 @@ export default {
   position: relative;
   width: 15px;
   height: 15px;
-  border: 1px solid #cdcdcd;
+  border: 1px solid #dae1e6;
   border-radius: 4px;
 
   &:after {

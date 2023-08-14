@@ -1,19 +1,17 @@
 <template>
   <ModalCommon title="TODO 수정하기" ref="modal">
-    <div>
-      <Input
-        placeholder="수정할 값을 입력해주세요."
-        v-model="todoInputEdit"
-        :handle-submit="editTodo"
-      />
-      <div class="button-wrapper">
-        <Button button-type="button-create" :button-click="editTodo">
-          수정하기
-        </Button>
-        <Button button-type="button-remove" :button-click="closeModal">
-          닫기
-        </Button>
-      </div>
+    <Input
+      placeholder="수정할 값을 입력해주세요."
+      v-model="todoInputEdit"
+      :handle-submit="editTodo"
+    />
+    <div class="modal-button-wrapper">
+      <Button button-type="button-create" :button-click="editTodo">
+        수정하기
+      </Button>
+      <Button button-type="button-remove" :button-click="closeModal">
+        닫기
+      </Button>
     </div>
   </ModalCommon>
 </template>
@@ -54,7 +52,7 @@ export default {
 </script>
 
 <style>
-.button-wrapper {
+.modal-button-wrapper {
   display: flex;
   flex-direction: column;
   gap: 5px;
