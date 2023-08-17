@@ -8,16 +8,21 @@
       >
         선택하기
       </Button>
-      <div v-else>
-        <Button button-type="button-remove" :button-click="setIsSelect">
-          선택 삭제
-        </Button>
-        <Button button-type="button-remove" :button-click="setIsSelect">
-          선택 완료
-        </Button>
-        <Button button-type="button-remove" :button-click="setIsSelect">
-          취소
-        </Button>
+      <div v-else class="select-wrapper">
+        <div>선택한 {{ this.checkedItems.length }}건</div>
+        <div>
+          <Button button-type="button-remove" :button-click="setIsSelect">
+            삭제
+          </Button>
+          <span> / </span>
+          <Button button-type="button-remove" :button-click="setIsSelect">
+            완료 처리
+          </Button>
+          <span> / </span>
+          <Button button-type="button-remove" :button-click="setIsSelect">
+            취소
+          </Button>
+        </div>
       </div>
     </div>
     <TodoItem v-for="item in todoItems" :key="item.id" :item="item" />
@@ -66,7 +71,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .list {
   margin-top: 30px;
 }
@@ -74,6 +79,14 @@ export default {
 .noList {
   margin-top: 100px;
   color: #cdcdcd;
+}
+
+.select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #dae1e6;
+  font-size: 13px;
 }
 
 .buttonWrapper {
