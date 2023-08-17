@@ -22,15 +22,18 @@ const store = new Vuex.Store({
     setCheckedItems: function (state, id) {
       // 포함하고 있는 경우 (제거)
       const tempItems = this.state.CheckedItem;
-
-      if (tempItems.includes(id)) {
-        const newItems = tempItems.filter((item) => item !== id);
+      const ids = tempItems.map((item) => item.id);
+      if (ids.includes(id)) {
+        const newItems = tempItems.filter((item) => item.id !== id);
         state.CheckedItem = newItems;
         return;
       }
       // 포함하지 않는 경우 (추가)
-      tempItems.push(id);
+      tempItems.push({ id });
       state.CheckedItem = tempItems;
+    },
+    resetCheckedItems: function (state) {
+      state.CheckedItem = [];
     },
   },
   actions: {
@@ -54,6 +57,13 @@ const store = new Vuex.Store({
     async updateTodoItem(store, item) {
       await useTodos.updateTodoItem(item.id, item);
       this.dispatch("getTodoList");
+    },
+    async updateAllTodoItems(store, items) {
+      const ids = items.map((item) => item.id);
+      await Promise.all(
+        ids.map((id) => useTodos.updateTodoItem(id, { isDone: true }))
+      );
+      await this.dispatch("getTodoList");
     },
   },
   modules: {},

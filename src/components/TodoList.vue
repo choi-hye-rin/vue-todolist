@@ -11,11 +11,14 @@
       <div v-else class="select-wrapper">
         <div>선택한 {{ this.checkedItems.length }}건</div>
         <div>
-          <Button button-type="button-remove" :button-click="setIsSelect">
+          <Button
+            button-type="button-remove"
+            :button-click="removeSelectedItems"
+          >
             삭제
           </Button>
           <span> / </span>
-          <Button button-type="button-remove" :button-click="setIsSelect">
+          <Button button-type="button-remove" :button-click="doneSelectedItems">
             완료 처리
           </Button>
           <span> / </span>
@@ -67,6 +70,15 @@ export default {
     },
     setIsSelect: function () {
       this.$store.commit("setIsSelect");
+      this.$store.commit("resetCheckedItems");
+    },
+    removeSelectedItems: function () {
+      this.$store.dispatch("deleteAllTodos", this.checkedItems);
+      this.$store.commit("resetCheckedItems");
+    },
+    doneSelectedItems: function () {
+      this.$store.dispatch("updateAllTodoItems", this.checkedItems);
+      this.$store.commit("resetCheckedItems");
     },
   },
 };
