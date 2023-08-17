@@ -2,6 +2,9 @@
   <div>
     <div class="item-wrapper" :class="checkedClass">
       <label class="content-wrapper" :htmlFor="id">
+        <div v-if="isSelect">
+          <Checkbox />
+        </div>
         <TodoCheck
           :id="id"
           :checked="isChecked"
@@ -29,6 +32,7 @@
 import Button from "./Button.vue";
 import TodoEditModal from "./TodoEditModal.vue";
 import TodoCheck from "./TodoCheck.vue";
+import Checkbox from "./Checkbox.vue";
 
 export default {
   name: "TodoItem",
@@ -36,6 +40,7 @@ export default {
     Button,
     TodoCheck,
     TodoEditModal,
+    Checkbox,
   },
   props: {
     item: {
@@ -55,6 +60,9 @@ export default {
         return "done";
       }
       return "";
+    },
+    isSelect() {
+      return this.$store.state.IsSelect;
     },
   },
   methods: {

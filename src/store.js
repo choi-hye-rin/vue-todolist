@@ -8,11 +8,16 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     TodoList: JSON.parse(localStorage.getItem("todos")) || [],
+    IsSelect: false,
+    CheckedItem: [],
   },
   getters: {},
   mutations: {
     setTodoItem: function (state, data) {
       state.TodoList = data;
+    },
+    setIsSelect: function (state) {
+      state.IsSelect = !state.IsSelect;
     },
   },
   actions: {
