@@ -52,6 +52,9 @@ export default {
     isSelect() {
       return this.$store.state.IsSelect;
     },
+    checkedItems() {
+      return this.$store.state.CheckedItem;
+    },
   },
   methods: {
     removeAllItems: function () {

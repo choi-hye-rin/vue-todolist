@@ -19,6 +19,19 @@ const store = new Vuex.Store({
     setIsSelect: function (state) {
       state.IsSelect = !state.IsSelect;
     },
+    setCheckedItems: function (state, id) {
+      // 포함하고 있는 경우 (제거)
+      const tempItems = this.state.CheckedItem;
+
+      if (tempItems.includes(id)) {
+        const newItems = tempItems.filter((item) => item !== id);
+        state.CheckedItem = newItems;
+        return;
+      }
+      // 포함하지 않는 경우 (추가)
+      tempItems.push(id);
+      state.CheckedItem = tempItems;
+    },
   },
   actions: {
     async getTodoList() {

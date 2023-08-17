@@ -1,13 +1,17 @@
 <template>
   <div>
-    <input type="checkbox" />
+    <input type="checkbox" @change="change" />
   </div>
 </template>
 
 <script>
 export default {
   name: "CheckboxVue",
-  props: {},
+  props: {
+    change: {
+      type: Function,
+    },
+  },
 };
 </script>
 

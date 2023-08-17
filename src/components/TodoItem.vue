@@ -3,7 +3,7 @@
     <div class="item-wrapper" :class="checkedClass">
       <label class="content-wrapper" :htmlFor="id">
         <div v-if="isSelect">
-          <Checkbox />
+          <Checkbox :change="updateCheckedItems" />
         </div>
         <TodoCheck
           :id="id"
@@ -78,6 +78,9 @@ export default {
         isDone,
       };
       this.$store.dispatch("updateTodoItem", item);
+    },
+    updateCheckedItems: function () {
+      this.$store.commit("setCheckedItems", this.id);
     },
   },
 };
