@@ -27,11 +27,18 @@
         {{ key }} >> {{ value }}
       </div>
     </div>
+    <div class="wrapper">
+      <div v-for="(msg, key) in errorMsg" :key="key" class="error">
+        에러메세지: {{ msg[0] }}
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import Radio from "../components/Radio.vue";
 import Button from "../components/Button.vue";
+
+import validator from "../utils/validatior";
 
 export default {
   name: "FormPage",
@@ -50,10 +57,17 @@ export default {
       groupName: "오잉😭",
       registrationNo: "",
       formValue: {},
+      errorMsg: {},
     };
   },
   methods: {
     onSubmit: function () {
+      this.errorMsg.groupType = validator.validate("groupType", this.groupType);
+      this.errorMsg.registrationNo = validator.validate(
+        "registrationNo",
+        this.registrationNo
+      );
+
       this.formValue = {
         groupType: this.groupType,
         groupName: this.groupName,
@@ -74,6 +88,10 @@ export default {
 
   input {
     padding: 5px 10px;
+  }
+
+  .error {
+    color: #fa5858;
   }
 }
 </style>
