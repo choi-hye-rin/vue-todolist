@@ -1,6 +1,6 @@
 <template>
   <div class="list" v-if="todoItems.length > 0">
-    <div class="">
+    <div class="select-button">
       <Button
         v-if="!isSelect"
         button-type="button-remove"
@@ -93,6 +93,9 @@ export default {
   color: #cdcdcd;
 }
 
+.select-button {
+  text-align: left;
+}
 .select-wrapper {
   display: flex;
   align-items: center;
