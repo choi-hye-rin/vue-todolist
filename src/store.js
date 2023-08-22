@@ -59,10 +59,15 @@ const store = new Vuex.Store({
       this.dispatch("getTodoList");
     },
     async updateAllTodoItems(store, items) {
-      const ids = items.map((item) => item.id);
+      // const ids = items.map((item) => item.id);
+      // await Promise.all(
+      //   ids.map((id) => useTodos.updateTodoItem(id, { isDone: true }))
+      // );
+
       await Promise.all(
-        ids.map((id) => useTodos.updateTodoItem(id, { isDone: true }))
+        items.map((id) => useTodos.updateTodoItem(id, { isDone: true }))
       );
+
       await this.dispatch("getTodoList");
     },
   },

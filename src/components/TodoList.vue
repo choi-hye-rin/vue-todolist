@@ -28,7 +28,13 @@
         </div>
       </div>
     </div>
-    <TodoItem v-for="item in todoItems" :key="item.id" :item="item" />
+    <TodoItem
+      v-for="item in todoItems"
+      :key="item.id"
+      :item="item"
+      @updateSelectedItems="updateSelectedItems"
+      :model="selectedItems"
+    />
     <div class="buttonWrapper">
       <Button
         v-if="todoItems.length > 0"
@@ -56,6 +62,11 @@ export default {
       type: Array,
     },
   },
+  data() {
+    return {
+      selectedItems: [],
+    };
+  },
   computed: {
     isSelect() {
       return this.$store.state.IsSelect;
@@ -73,12 +84,16 @@ export default {
       this.$store.commit("resetCheckedItems");
     },
     removeSelectedItems: function () {
-      this.$store.dispatch("deleteAllTodos", this.checkedItems);
-      this.$store.commit("resetCheckedItems");
+      this.$store.dispatch("deleteAllTodos", this.selectedItems);
+      // this.$store.commit("resetCheckedItems");
     },
     doneSelectedItems: function () {
-      this.$store.dispatch("updateAllTodoItems", this.checkedItems);
-      this.$store.commit("resetCheckedItems");
+      this.$store.dispatch("updateAllTodoItems", this.selectedItems);
+
+      // this.$store.commit("resetCheckedItems");
+    },
+    updateSelectedItems: function (value) {
+      this.selectedItems = value;
     },
   },
 };

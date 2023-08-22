@@ -2,7 +2,7 @@
   <label>
     <!-- value = 지정해주는 값(inputValue === 부모에서 보낸 item.id)  -->
     <input type="checkbox" :value="inputValue" v-model="model" />
-    <span>{{ inputValue }}</span>
+    <!-- <span>{{ inputValue }}</span> -->
   </label>
 </template>
 
