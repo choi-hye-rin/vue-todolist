@@ -3,13 +3,12 @@
     <div class="item-wrapper" :class="checkedClass">
       <label class="content-wrapper" :htmlFor="id">
         <div v-if="isSelect">
-          <!-- <TodoCheck
+          <TodoCheck
             :id="id"
             :checked="isItemSelected"
             :check-change="updateCheckedItems"
             :is-select-item="true"
-          /> -->
-          <Checkbox :input-value="item.id" v-model="checkModel" />
+          />
         </div>
         <TodoCheck
           :id="id"
@@ -38,7 +37,6 @@
 import Button from "./Button.vue";
 import TodoEditModal from "./TodoEditModal.vue";
 import TodoCheck from "./TodoCheck.vue";
-import Checkbox from "./Checkbox.vue";
 
 export default {
   name: "TodoItem",
@@ -46,17 +44,12 @@ export default {
     Button,
     TodoCheck,
     TodoEditModal,
-    Checkbox,
   },
   props: {
     item: {
       type: Object,
     },
-    model: {
-      type: Array,
-    },
   },
-
   computed: {
     id() {
       return this.item.id;
@@ -78,14 +71,6 @@ export default {
     isSelect() {
       return this.$store.state.IsSelect;
     },
-    checkModel: {
-      get() {
-        return this.model;
-      },
-      set(value) {
-        this.$emit("updateSelectedItems", value);
-      },
-    },
   },
   methods: {
     deleteTodoItem: function () {
@@ -103,9 +88,6 @@ export default {
     },
     updateCheckedItems: function () {
       this.$store.commit("setCheckedItems", this.id);
-    },
-    handleCheckbox: function () {
-      this.$emit("updateFormData", this.formValue);
     },
   },
 };
