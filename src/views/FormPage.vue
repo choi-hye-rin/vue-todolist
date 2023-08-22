@@ -1,80 +1,40 @@
 <template>
   <div class="container">
     <div class="wrapper">form</div>
+    <UserForm @updateFormData="updateFormData" />
     <div class="wrapper">
-      <form>
-        <div>그룹유형</div>
-        <div>
-          <Radio
-            v-for="item in checkList"
-            :key="item.id"
-            :radio-value="item.value"
-            v-model="groupType"
-          />
-        </div>
-        <div>그룹명</div>
-        <input type="text" v-model.lazy="groupName" />
-        <div>주민등록번호</div>
-        <input type="text" v-model.lazy="registrationNo" />
-        <br />
-        <br />
-        <Button :button-click="onSubmit">제출하기</Button>
-      </form>
-    </div>
-
-    <div class="wrapper">
-      <div v-for="(value, key) in formValue" :key="key">
+      <div v-for="(value, key) in formData" :key="key">
         {{ key }} >> {{ value }}
       </div>
     </div>
     <div class="wrapper">
-      <div v-for="(msg, key) in errorMsg" :key="key" class="error">
+      <div v-for="msg in errorMsg" :key="msg" class="error">
         에러메세지: {{ msg[0] }}
       </div>
     </div>
   </div>
 </template>
 <script>
-import Radio from "../components/Radio.vue";
-import Button from "../components/Button.vue";
-
-import validator from "../utils/validatior";
+import UserForm from "../components/formPage/userForm.vue";
 
 export default {
   name: "FormPage",
   components: {
-    Radio,
-    Button,
+    UserForm,
   },
   data() {
     return {
-      checkList: [
-        { id: 1, value: "A" },
-        { id: 2, value: "B" },
-        { id: 3, value: "C" },
-      ],
-      groupType: "",
-      groupName: "오잉😭",
-      registrationNo: "",
-      formValue: {},
+      formData: {},
       errorMsg: {},
     };
   },
   methods: {
-    onSubmit: function () {
-      this.errorMsg.groupType = validator.validate("groupType", this.groupType);
-      this.errorMsg.registrationNo = validator.validate(
-        "registrationNo",
-        this.registrationNo
-      );
-
-      this.formValue = {
-        groupType: this.groupType,
-        groupName: this.groupName,
-        registrationNo: this.registrationNo,
-      };
+    updateFormData: function (formValue, errorMsg) {
+      this.formData = formValue;
+      this.errorMsg = errorMsg;
     },
   },
+  computed: {},
 };
 </script>
 <style lang="scss" scoped>
