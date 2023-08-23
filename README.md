@@ -1,24 +1,28 @@
-# my-todo
+# 뷰로 만든 투두리스트
 
-## Project setup
-```
-yarn install
-```
+```powerShell
+  # json-server
+  yarn server
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+  # project setup
+  yarn install
 
-### Compiles and minifies for production
-```
-yarn build
+  # compiles and hot-reloads for development
+  # http://localhost:8077
+  yarn serve
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+### 가능한 기능
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 투두아이템 등록
+- 투두아이템 수정
+- 투두아이템 삭제
+- 전체 목록 삭제
+- 선택하여 여러 개 삭제
+- 선택하여 여러 개 동시에 완료 처리
+
+### 수정하고 싶은 것
+
+- 선택하여 여러 개 아이템 업데이트 한 이후의 화면 리렌더링 이슈
+
+(세상에 공개하게 될 줄 몰랐어요.)
