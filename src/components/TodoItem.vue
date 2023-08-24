@@ -59,7 +59,8 @@ export default {
       return checked;
     },
     isItemSelected() {
-      const checked = this.$store.state.CheckedItem.includes(this.id);
+      const ids = this.$store.state.CheckedItem.map((item) => item.id);
+      const checked = ids.includes(this.id);
       return checked;
     },
     checkedClass() {
