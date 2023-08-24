@@ -29,7 +29,7 @@
         >
       </div>
     </div>
-    <TodoEditModal ref="editModal" :todoItem="item" />
+    <TodoEditModal ref="editModal" :todo-item="item" />
   </div>
 </template>
 
