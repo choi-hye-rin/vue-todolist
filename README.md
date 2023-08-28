@@ -14,6 +14,7 @@
 
 ### 가능한 기능
 
+
 - 투두아이템 등록
 - 투두아이템 수정
 - 투두아이템 삭제
@@ -21,8 +22,30 @@
 - 선택하여 여러 개 삭제
 - 선택하여 여러 개 동시에 완료 처리
 
-### 수정하고 싶은 것
 
-- 선택하여 여러 개 아이템 업데이트 한 이후의 화면 리렌더링 이슈
+### 실행 화면
 
-(세상에 공개하게 될 줄 몰랐어요.)
+
+<img
+  src="https://github.com/choi-hye-rin/vue-todolist/assets/120363333/c1fe9e5a-1fb5-4c7b-90ee-37536b057c10"
+  width="300"
+  height="400"
+/>
+
+투두 아이템을 등록, 완료처리, 수정, 삭제, 전체삭제 가능한 목록
+
+<img
+  src="https://github.com/choi-hye-rin/vue-todolist/assets/120363333/7aba30ba-b651-4418-b920-155220499f39"
+  width="300"
+  height="400"
+/>
+
+여러 개의 아이템을 선택하여 완료처리, 삭제
+
+<img
+  src="https://github.com/choi-hye-rin/vue-todolist/assets/120363333/787b1216-59be-4471-9316-4b096049bc52"
+  width="300"
+  height="400"
+/>
+
+투두 아이템을 수정
