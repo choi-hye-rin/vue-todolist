@@ -49,6 +49,44 @@
       <div>선택된 라디오: {{ radioSelected }}</div>
     </div>
 
+    <!-- select -->
+    <div class="wrapper">
+      <select v-model="selectSelected">
+        <option v-for="item in checkList" :key="item.id" :value="item.value">
+          {{ item.value }}
+        </option>
+      </select>
+      <div>선택된 옵션: {{ selectSelected }}</div>
+    </div>
+
+    <!-- select component -->
+    <div class="wrapper">
+      <Select :item-list="checkList" v-model="selectSelectedComponent" />
+      <div>선택된 옵션: {{ selectSelectedComponent }}</div>
+    </div>
+
+    <!-- 멀티 셀렉트 사용해보기 -->
+    <div class="wrapper">
+      나는 멀티에요
+      <Multiselect
+        :options="checkList"
+        :searchable="false"
+        track-by="id"
+        label="value"
+        placeholder="선택하세용"
+        v-model="multiselectSelected"
+      >
+        <template slot="singleLabel" slot-scope="{ option }">
+          <span>{{ option.id }}</span>
+          <span> {{ option.value }}</span>
+        </template>
+      </Multiselect>
+
+      <div>선택된 것 : {{ multiselectSelected }}</div>
+    </div>
+
+    <!--  -->
+    <!--  -->
     <div class="wrapper">
       <Button :button-click="handleOnClickPageMove">
         투두 페이지로 돌아가기
@@ -60,6 +98,8 @@
 import Button from "../components/Button.vue";
 import Checkbox from "../components/Checkbox.vue";
 import Radio from "../components/Radio.vue";
+import Select from "../components/Select.vue";
+import Multiselect from "vue-multiselect";
 
 export default {
   name: "OtherPage",
@@ -67,6 +107,8 @@ export default {
     Button,
     Checkbox,
     Radio,
+    Select,
+    Multiselect,
   },
   data() {
     return {
@@ -80,6 +122,10 @@ export default {
       checkSelected: [],
       checkSelectedComponent: [],
       radioSelected: "",
+      selectSelected: "선택하세용",
+      selectSelectedComponent: "컴포넌트예용",
+      optionItems: ["A", "B", "C"],
+      multiselectSelected: null,
     };
   },
   methods: {
