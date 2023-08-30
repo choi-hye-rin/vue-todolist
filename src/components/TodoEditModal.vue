@@ -5,6 +5,12 @@
       v-model="todoInputEdit"
       :handle-submit="editTodo"
     />
+    <div>
+      <input type="date" ref="date" class="date" v-model="todoDate" />
+      <Button button-type="button-edit" :button-click="focusTodoDate">
+        완료 날짜 변경하기 🗓️ {{ formattedDate }}
+      </Button>
+    </div>
     <div class="modal-button-wrapper">
       <Button button-type="button-create" :button-click="editTodo">
         수정하기
@@ -17,6 +23,8 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
+
 import ModalCommon from "./ModalCommon.vue";
 import Input from "./Input.vue";
 import Button from "./Button.vue";
@@ -32,17 +40,31 @@ export default {
     Input,
     Button,
   },
+  data() {
+    return {
+      todoDate: dayjs(this.todoItem.date).format("YYYY-MM-DD"),
+    };
+  },
+  computed: {
+    formattedDate() {
+      return dayjs(this.todoDate).format("YY.MM.DD");
+    },
+  },
   methods: {
     editTodo: function () {
       const item = {
         id: this.todoItem.id,
         content: this.todoInputEdit,
+        date: this.todoDate,
       };
       this.$store.dispatch("updateTodoItem", item);
       this.$refs.modal.hide();
     },
     closeModal: function () {
       this.$refs.modal.hide();
+    },
+    focusTodoDate: function () {
+      this.$refs.date.showPicker();
     },
   },
   created() {
@@ -51,11 +73,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .modal-button-wrapper {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-top: 30px;
+  margin-top: 15px;
+}
+
+.date {
+  width: 1px;
+  height: 1px;
+  opacity: 0;
 }
 </style>
