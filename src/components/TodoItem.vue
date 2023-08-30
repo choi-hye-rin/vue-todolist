@@ -28,12 +28,15 @@
           >X</Button
         >
       </div>
+      <div class="todoDate">{{ todoDate }} (D-{{ dueDate }})</div>
     </div>
     <TodoEditModal ref="editModal" :todo-item="item" />
   </div>
 </template>
 
 <script>
+import dayjs from "dayjs";
+
 import Button from "./Button.vue";
 import TodoEditModal from "./TodoEditModal.vue";
 import TodoCheck from "./TodoCheck.vue";
@@ -72,6 +75,14 @@ export default {
     isSelect() {
       return this.$store.state.IsSelect;
     },
+    todoDate() {
+      return dayjs(this.item.date).format("YY.MM.DD");
+    },
+    dueDate() {
+      const today = dayjs();
+      const sub = dayjs(this.item.date).diff(today, "day");
+      return sub + 1;
+    },
   },
   methods: {
     deleteTodoItem: function () {
@@ -107,12 +118,17 @@ export default {
     width: 100%;
     display: flex;
     gap: 10px;
+  }
 
-    .content {
-      width: 100%;
-      font-size: 13px;
-      color: #6c7d8b;
-    }
+  .content {
+    width: 100%;
+    font-size: 13px;
+    color: #6c7d8b;
+  }
+
+  .todoDate {
+    font-size: 11px;
+    color: #c1c6cb;
   }
 
   .button-wrapper {
