@@ -114,6 +114,7 @@ export default {
   },
   watch: {
     selectedSort: function (value) {
+      this.$store.commit("setTodoSort", value);
       this.$store.dispatch("getTodoList", value);
     },
   },

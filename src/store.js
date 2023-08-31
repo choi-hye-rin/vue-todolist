@@ -41,11 +41,8 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    async getTodoList(store, data) {
-      let sort = "createdAt";
-      if (data) {
-        sort = data;
-      }
+    async getTodoList() {
+      const sort = this.state.TodoSort;
       const res = await useTodos.getTodoList(sort);
       this.commit("setTodoItem", res.data);
     },
