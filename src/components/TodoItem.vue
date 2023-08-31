@@ -28,7 +28,12 @@
           >X</Button
         >
       </div>
-      <div class="todoDate">{{ todoDate }} (D-{{ dueDate }})</div>
+      <div class="todoDate">
+        <span>{{ todoDate }} </span>
+        <span v-if="dueDate < 0">(D{{ dueDate }})</span>
+        <span v-else-if="dueDate > 0">(D+{{ dueDate }})</span>
+        <span v-else>(D-DAY)</span>
+      </div>
     </div>
     <TodoEditModal ref="editModal" :todo-item="item" />
   </div>
@@ -80,8 +85,8 @@ export default {
     },
     dueDate() {
       const today = dayjs();
-      const sub = dayjs(this.item.date).diff(today, "day");
-      return sub + 1;
+      const sub = today.diff(dayjs(this.item.date), "day");
+      return sub;
     },
   },
   methods: {

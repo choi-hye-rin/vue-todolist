@@ -1,8 +1,10 @@
 import axios from "axios";
 
 export default {
-  getTodoList() {
-    const res = axios.get(`${process.env.VUE_APP_API_BASE_URL}/todos`);
+  getTodoList(sort) {
+    const res = axios.get(
+      `${process.env.VUE_APP_API_BASE_URL}/todos?_sort=${sort}`
+    );
     return res;
   },
 

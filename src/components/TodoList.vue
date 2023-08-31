@@ -1,33 +1,46 @@
 <template>
   <div class="list" v-if="todoItems.length > 0">
-    <div class="select-button">
-      <Button
-        v-if="!isSelect"
-        button-type="button-remove"
-        :button-click="setIsSelect"
-      >
-        선택하기
-      </Button>
-      <div v-else class="select-wrapper">
-        <div>선택한 {{ this.checkedItems.length }}건</div>
-        <div>
-          <Button
-            button-type="button-remove"
-            :button-click="removeSelectedItems"
-          >
-            삭제
-          </Button>
-          <span> / </span>
-          <Button button-type="button-remove" :button-click="doneSelectedItems">
-            완료 처리
-          </Button>
-          <span> / </span>
-          <Button button-type="button-remove" :button-click="setIsSelect">
-            취소
-          </Button>
+    <div class="button-wrapper">
+      <div class="select-button">
+        <Button
+          v-if="!isSelect"
+          button-type="button-remove"
+          :button-click="setIsSelect"
+        >
+          선택하기
+        </Button>
+        <div v-else class="select-wrapper">
+          <div>선택한 {{ this.checkedItems.length }}건</div>
+          <div>
+            <Button
+              button-type="button-remove"
+              :button-click="removeSelectedItems"
+            >
+              삭제
+            </Button>
+            <span> / </span>
+            <Button
+              button-type="button-remove"
+              :button-click="doneSelectedItems"
+            >
+              완료 처리
+            </Button>
+            <span> / </span>
+            <Button button-type="button-remove" :button-click="setIsSelect">
+              취소
+            </Button>
+          </div>
         </div>
       </div>
+      <div class="sort-button">
+        <Select
+          :item-list="sortOptions"
+          v-model="selectedSort"
+          :placeholder="computedSort"
+        />
+      </div>
     </div>
+
     <TodoItem v-for="item in todoItems" :key="item.id" :item="item" />
     <div class="buttonWrapper">
       <Button
@@ -45,16 +58,27 @@
 <script>
 import TodoItem from "./TodoItem.vue";
 import Button from "./Button.vue";
+import Select from "./Select.vue";
 
 export default {
   components: {
     TodoItem,
     Button,
+    Select,
   },
   props: {
     todoItems: {
       type: Array,
     },
+  },
+  data() {
+    return {
+      sortOptions: [
+        { id: "createdAt", value: "등록 순" },
+        { id: "date", value: "완료일 순" },
+      ],
+      selectedSort: "",
+    };
   },
   computed: {
     isSelect() {
@@ -62,6 +86,13 @@ export default {
     },
     checkedItems() {
       return this.$store.state.CheckedItem;
+    },
+    computedSort() {
+      const sort = this.$store.state.TodoSort;
+      if (sort === "createdAt") {
+        return "등록 순";
+      }
+      return "완료일 순";
     },
   },
   methods: {
@@ -81,6 +112,11 @@ export default {
       this.$store.commit("resetCheckedItems");
     },
   },
+  watch: {
+    selectedSort: function (value) {
+      this.$store.dispatch("getTodoList", value);
+    },
+  },
 };
 </script>
 <style scoped>
@@ -93,8 +129,17 @@ export default {
   color: #cdcdcd;
 }
 
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
 .select-button {
+  display: inline-block;
   text-align: left;
+}
+
+.sort-button {
+  display: inline-block;
 }
 .select-wrapper {
   display: flex;

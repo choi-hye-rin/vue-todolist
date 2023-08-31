@@ -10,6 +10,7 @@ const store = new Vuex.Store({
     TodoList: JSON.parse(localStorage.getItem("todos")) || [],
     IsSelect: false,
     CheckedItem: [],
+    TodoSort: "createdAt",
   },
   getters: {},
   mutations: {
@@ -35,10 +36,17 @@ const store = new Vuex.Store({
     resetCheckedItems: function (state) {
       state.CheckedItem = [];
     },
+    setTodoSort: function (state, data) {
+      state.TodoSort = data;
+    },
   },
   actions: {
-    async getTodoList() {
-      const res = await useTodos.getTodoList();
+    async getTodoList(store, data) {
+      let sort = "createdAt";
+      if (data) {
+        sort = data;
+      }
+      const res = await useTodos.getTodoList(sort);
       this.commit("setTodoItem", res.data);
     },
     async addTodoItem(store, item) {
