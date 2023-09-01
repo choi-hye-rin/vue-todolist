@@ -29,6 +29,7 @@
         >
       </div>
       <div class="todoDate">
+        <span> [{{ item.category }}] </span>
         <span>{{ todoDate }} </span>
         <span v-if="dueDate < 0">(D{{ dueDate }})</span>
         <span v-else-if="dueDate > 0">(D+{{ dueDate }})</span>

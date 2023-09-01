@@ -25,4 +25,9 @@ export default {
     );
     return res;
   },
+
+  getCategory() {
+    const res = axios.get(`${process.env.VUE_APP_API_BASE_URL}/category`);
+    return res;
+  },
 };

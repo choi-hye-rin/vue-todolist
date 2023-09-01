@@ -7,14 +7,22 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    TodoList: JSON.parse(localStorage.getItem("todos")) || [],
+    TodoList: [],
     IsSelect: false,
     CheckedItem: [],
     TodoSort: "createdAt",
+    Category: [],
   },
   getters: {},
   mutations: {
     setTodoItem: function (state, data) {
+      const result = data.reduce((acc, curr) => {
+        const { category } = curr;
+        if (acc[category]) acc[category].push(curr);
+        else acc[category] = [curr];
+        return acc;
+      }, {});
+      console.log("result", result);
       state.TodoList = data;
     },
     setIsSelect: function (state) {
@@ -38,6 +46,9 @@ const store = new Vuex.Store({
     },
     setTodoSort: function (state, data) {
       state.TodoSort = data;
+    },
+    setCategory: function (state, data) {
+      state.Category = data;
     },
   },
   actions: {
@@ -69,6 +80,10 @@ const store = new Vuex.Store({
         ids.map((id) => useTodos.updateTodoItem(id, { isDone: true }))
       );
       await this.dispatch("getTodoList");
+    },
+    async getCategory() {
+      const res = await useTodos.getCategory();
+      this.commit("setCategory", res.data);
     },
   },
   modules: {},

@@ -21,6 +21,7 @@ export default {
   methods: {},
   mounted() {
     this.$store.dispatch("getTodoList");
+    this.$store.dispatch("getCategory");
   },
 };
 </script>
