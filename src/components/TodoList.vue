@@ -41,7 +41,13 @@
       </div>
     </div>
 
-    <TodoItem v-for="item in todoItems" :key="item.id" :item="item" />
+    <TodoCategory
+      v-for="key in Object.keys(categorizedTodoItems)"
+      :key="key"
+      :todo-items="categorizedTodoItems[key]"
+      :category="key"
+    />
+
     <div class="buttonWrapper">
       <Button
         v-if="todoItems.length > 0"
@@ -56,20 +62,15 @@
 </template>
 
 <script>
-import TodoItem from "./TodoItem.vue";
 import Button from "./Button.vue";
 import Select from "./Select.vue";
+import TodoCategory from "./TodoCategory.vue";
 
 export default {
   components: {
-    TodoItem,
     Button,
     Select,
-  },
-  props: {
-    todoItems: {
-      type: Array,
-    },
+    TodoCategory,
   },
   data() {
     return {
@@ -81,6 +82,18 @@ export default {
     };
   },
   computed: {
+    todoItems() {
+      return this.$store.state.TodoList;
+    },
+    categorizedTodoItems() {
+      const result = this.todoItems.reduce((acc, curr) => {
+        const { category } = curr;
+        if (acc[category]) acc[category].push(curr);
+        else acc[category] = [curr];
+        return acc;
+      }, {});
+      return result;
+    },
     isSelect() {
       return this.$store.state.IsSelect;
     },

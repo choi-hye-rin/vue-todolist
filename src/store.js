@@ -16,13 +16,6 @@ const store = new Vuex.Store({
   getters: {},
   mutations: {
     setTodoItem: function (state, data) {
-      const result = data.reduce((acc, curr) => {
-        const { category } = curr;
-        if (acc[category]) acc[category].push(curr);
-        else acc[category] = [curr];
-        return acc;
-      }, {});
-      console.log("result", result);
       state.TodoList = data;
     },
     setIsSelect: function (state) {

@@ -2,7 +2,7 @@
   <div id="app">
     <TodoHeader />
     <TodoInput />
-    <TodoList :todoItems="this.$store.state.TodoList" />
+    <TodoList />
   </div>
 </template>
 
