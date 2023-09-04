@@ -23,6 +23,8 @@ import Button from "./Button.vue";
 import TodoItem from "./TodoItem.vue";
 import IconChevron from "./icon/IconChevron.vue";
 
+import utils from "../utils/util";
+
 export default {
   components: {
     TodoItem,
@@ -44,10 +46,7 @@ export default {
   },
   computed: {
     categoryLabel() {
-      const label = this.$store.state.Category.filter(
-        (cate) => cate.id === this.category
-      )[0]?.value;
-      return label;
+      return utils.getCategoryLabel(this.$store.state.Category, this.category);
     },
   },
   methods: {
