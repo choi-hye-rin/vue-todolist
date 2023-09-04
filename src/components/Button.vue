@@ -39,4 +39,8 @@ button {
   color: #dae1e6;
   padding: 10px 5px;
 }
+
+.button-transparent {
+  background-color: transparent;
+}
 </style>
