@@ -90,7 +90,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr 90px;
   align-items: center;
-  gap: 10px;
 }
 
 .date {
