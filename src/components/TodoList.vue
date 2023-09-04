@@ -146,6 +146,7 @@ export default {
 .button-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .select-button {
   display: inline-block;

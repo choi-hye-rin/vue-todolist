@@ -41,6 +41,7 @@ export default {
 <style>
 .input-text-wrapper {
   width: 100%;
+  height: 100%;
   border: none;
   border-bottom: 1px solid #dae1e6;
 
