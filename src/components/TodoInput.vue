@@ -11,9 +11,16 @@
 
     <div class="left">
       <Button button-type="button-edit" :button-click="focusTodoDate">
-        언제까지 끝낼 건가요? 🗓️ {{ formattedDate }}
+        🗓️ {{ formattedDate }}
       </Button>
       <input type="date" ref="date" class="date" v-model="todoDate" />
+    </div>
+    <div>
+      <Select
+        :item-list="categoryList"
+        v-model="selectedCategory"
+        placeholder="분류"
+      />
     </div>
   </div>
 </template>
@@ -23,22 +30,28 @@ import dayjs from "dayjs";
 
 import Button from "./Button.vue";
 import Input from "./Input.vue";
+import Select from "./Select.vue";
 
 export default {
   name: "CreateTodo",
   components: {
     Button,
     Input,
+    Select,
   },
   data() {
     return {
       todoInput: "",
       todoDate: dayjs().format("YYYY-MM-DD"),
+      selectedCategory: "",
     };
   },
   computed: {
     formattedDate() {
       return dayjs(this.todoDate).format("YY.MM.DD");
+    },
+    categoryList() {
+      return this.$store.state.Category;
     },
   },
   methods: {
@@ -47,14 +60,18 @@ export default {
         return;
       }
       const id = `${Math.random()}${dayjs().format("YYMMDDHHmmss")}`;
+      const category =
+        this.selectedCategory === "" ? "1" : this.selectedCategory;
       const tempItem = {
         id,
         content: this.todoInput,
         isDone: false,
         date: this.todoDate,
+        category,
       };
       this.$store.dispatch("addTodoItem", tempItem);
       this.todoInput = "";
+      this.selectedCategory = "";
     },
 
     handleInput: function (value) {
