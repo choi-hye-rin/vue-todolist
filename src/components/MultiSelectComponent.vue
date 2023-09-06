@@ -59,6 +59,12 @@ export default {
     border: none;
   }
 
+  .multiselect__content-wrapper {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px -2px #dae1e6;
+  }
+
   .multiselect__single {
     color: #dae1e6;
     font-size: 13px;
