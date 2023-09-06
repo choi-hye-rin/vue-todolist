@@ -16,11 +16,11 @@
       <input type="date" ref="date" class="date" v-model="todoDate" />
     </div>
     <div>
-      <Select
+      <MultiSelect
         :item-list="categoryList"
         v-model="selectedCategory"
         placeholder="분류"
-      />
+      ></MultiSelect>
     </div>
   </div>
 </template>
@@ -30,14 +30,16 @@ import dayjs from "dayjs";
 
 import Button from "./Button.vue";
 import Input from "./Input.vue";
-import Select from "./Select.vue";
+// import Select from "./Select.vue";
+import MultiSelect from "./MultiSelectComponent.vue";
 
 export default {
   name: "CreateTodo",
   components: {
     Button,
     Input,
-    Select,
+    // Select,
+    MultiSelect,
   },
   data() {
     return {
@@ -61,7 +63,7 @@ export default {
       }
       const id = `${Math.random()}${dayjs().format("YYMMDDHHmmss")}`;
       const category =
-        this.selectedCategory === "" ? "1" : this.selectedCategory;
+        this.selectedCategory.id === "" ? "1" : this.selectedCategory.id;
       const tempItem = {
         id,
         content: this.todoInput,
