@@ -78,6 +78,10 @@ const store = new Vuex.Store({
       const res = await useTodos.getCategory();
       this.commit("setCategory", res.data);
     },
+    async addCategory(store, data) {
+      await useTodos.addCategory(data);
+      this.dispatch("getCategory");
+    },
   },
   modules: {},
 });

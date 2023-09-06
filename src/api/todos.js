@@ -30,4 +30,12 @@ export default {
     const res = axios.get(`${process.env.VUE_APP_API_BASE_URL}/category`);
     return res;
   },
+
+  addCategory(data) {
+    const res = axios.post(
+      `${process.env.VUE_APP_API_BASE_URL}/category`,
+      data
+    );
+    return res;
+  },
 };

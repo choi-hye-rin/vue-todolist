@@ -20,6 +20,7 @@
         :item-list="categoryList"
         v-model="selectedCategory"
         placeholder="분류"
+        :add-item="addItem"
       ></MultiSelect>
     </div>
   </div>
@@ -30,15 +31,15 @@ import dayjs from "dayjs";
 
 import Button from "./Button.vue";
 import Input from "./Input.vue";
-// import Select from "./Select.vue";
 import MultiSelect from "./MultiSelectComponent.vue";
+
+import util from "../utils/util";
 
 export default {
   name: "CreateTodo",
   components: {
     Button,
     Input,
-    // Select,
     MultiSelect,
   },
   data() {
@@ -82,6 +83,15 @@ export default {
 
     focusTodoDate: function () {
       this.$refs.date.showPicker();
+    },
+
+    addItem: function (tag) {
+      const tagItem = {
+        id: util.createRandomId(),
+        value: tag,
+      };
+      this.$store.dispatch("addCategory", tagItem);
+      this.selectedCategory = tagItem;
     },
   },
 };

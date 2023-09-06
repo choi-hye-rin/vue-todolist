@@ -5,13 +5,14 @@
       :placeholder="placeholder"
       :options="itemList"
       :searchable="true"
-      :allow-empty="false"
       :height="300"
       label="value"
       track-by="value"
       :preselect-first="false"
       :select-label="null"
       deselect-label="selected"
+      :taggable="true"
+      @tag="createNewTag"
     >
     </MultiSelect>
   </div>
@@ -30,6 +31,9 @@ export default {
     placeholder: {
       type: String,
     },
+    addItem: {
+      type: Function,
+    },
   },
   components: { MultiSelect },
   data() {
@@ -45,6 +49,11 @@ export default {
       set(value) {
         this.$emit("input", value);
       },
+    },
+  },
+  methods: {
+    createNewTag: function (tag) {
+      this.addItem(tag);
     },
   },
 };
