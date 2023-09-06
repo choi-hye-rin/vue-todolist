@@ -8,14 +8,11 @@
     <Button button-type="button-create" :button-click="createTodo">
       추가
     </Button>
-
     <div class="left">
       <Button button-type="button-edit" :button-click="focusTodoDate">
         🗓️ {{ formattedDate }}
       </Button>
       <input type="date" ref="date" class="date" v-model="todoDate" />
-    </div>
-    <div>
       <MultiSelect
         :item-list="categoryList"
         v-model="selectedCategory"
@@ -101,6 +98,7 @@ export default {
 .input-wrapper {
   display: grid;
   grid-template-columns: 1fr 90px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -109,5 +107,12 @@ export default {
   width: 1px;
   height: 1px;
   opacity: 0;
+  position: absolute;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 </style>
