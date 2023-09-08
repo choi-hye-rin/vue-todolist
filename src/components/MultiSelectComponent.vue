@@ -13,6 +13,7 @@
       deselect-label="selected"
       :taggable="true"
       @tag="createNewTag"
+      tag-placeholder="추가"
     >
     </MultiSelect>
   </div>
@@ -62,8 +63,6 @@ export default {
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss">
 .select-wrapper {
-  width: 80px;
-
   .multiselect__tags {
     border: none;
   }
@@ -84,7 +83,8 @@ export default {
     color: #6c7d8b;
   }
 
-  .multiselect__option--highlight {
+  .multiselect__option--highlight,
+  .multiselect__option--highlight::after {
     background-color: #a1c9fa;
     color: white;
   }
