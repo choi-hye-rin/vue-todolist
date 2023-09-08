@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <TodoSideBar />
     <TodoHeader />
     <TodoInput />
     <TodoList />
@@ -7,6 +8,7 @@
 </template>
 
 <script>
+import TodoSideBar from "../components/SideBar.vue";
 import TodoHeader from "../components/Header.vue";
 import TodoInput from "../components/TodoInput.vue";
 import TodoList from "../components/TodoList.vue";
@@ -14,6 +16,7 @@ import TodoList from "../components/TodoList.vue";
 export default {
   name: "TodoPage",
   components: {
+    TodoSideBar,
     TodoHeader,
     TodoInput,
     TodoList,
@@ -35,7 +38,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin: 0 auto;
-  margin-top: 60px;
   padding: 0;
 }
 </style>

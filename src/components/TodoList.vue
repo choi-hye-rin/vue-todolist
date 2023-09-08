@@ -47,16 +47,6 @@
       :todo-items="categorizedTodoItems[key]"
       :category="key"
     />
-
-    <div class="buttonWrapper">
-      <Button
-        v-if="todoItems.length > 0"
-        button-type="button-remove"
-        :button-click="removeAllItems"
-      >
-        clear all
-      </Button>
-    </div>
   </div>
   <div v-else class="noList">휑..</div>
 </template>
@@ -109,9 +99,6 @@ export default {
     },
   },
   methods: {
-    removeAllItems: function () {
-      this.$store.dispatch("deleteAllTodos", this.todoItems);
-    },
     setIsSelect: function () {
       this.$store.commit("setIsSelect");
       this.$store.commit("resetCheckedItems");
@@ -157,6 +144,7 @@ export default {
   display: inline-block;
 }
 .select-wrapper {
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 15px;
