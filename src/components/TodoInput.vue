@@ -29,6 +29,7 @@ import dayjs from "dayjs";
 import Button from "./Button.vue";
 import Input from "./Input.vue";
 import MultiSelect from "./MultiSelectComponent.vue";
+import { todoStore } from "../store/index.js";
 
 import util from "../utils/util";
 
@@ -38,6 +39,10 @@ export default {
     Button,
     Input,
     MultiSelect,
+  },
+  setup() {
+    const store = todoStore();
+    return { store };
   },
   data() {
     return {
@@ -51,7 +56,7 @@ export default {
       return dayjs(this.todoDate).format("YY.MM.DD");
     },
     categoryList() {
-      return this.$store.state.Category;
+      return this.store.Category;
     },
   },
   methods: {
@@ -69,7 +74,7 @@ export default {
         date: this.todoDate,
         category,
       };
-      this.$store.dispatch("addTodoItem", tempItem);
+      this.store.addTodoItem(tempItem);
       this.todoInput = "";
       this.selectedCategory = "";
     },
@@ -87,7 +92,7 @@ export default {
         id: util.createRandomId(),
         value: tag,
       };
-      this.$store.dispatch("addCategory", tagItem);
+      this.store.addCategory(tagItem);
       this.selectedCategory = tagItem;
     },
   },

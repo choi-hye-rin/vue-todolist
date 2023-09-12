@@ -13,7 +13,10 @@ import TodoHeader from "../components/Header.vue";
 import TodoInput from "../components/TodoInput.vue";
 import TodoList from "../components/TodoList.vue";
 
-export default {
+import { defineComponent } from "@vue/composition-api";
+import { todoStore } from "../store/index.js";
+
+export default defineComponent({
   name: "TodoPage",
   components: {
     TodoSideBar,
@@ -21,12 +24,16 @@ export default {
     TodoInput,
     TodoList,
   },
+  setup() {
+    const store = todoStore();
+    return { store };
+  },
   methods: {},
   mounted() {
-    this.$store.dispatch("getTodoList");
-    this.$store.dispatch("getCategory");
+    this.store.getTodoList();
+    this.store.getCategory();
   },
-};
+});
 </script>
 
 <style>

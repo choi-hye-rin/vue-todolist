@@ -45,6 +45,7 @@ import dayjs from "dayjs";
 import Button from "./Button.vue";
 import TodoEditModal from "./TodoEditModal.vue";
 import TodoCheck from "./TodoCheck.vue";
+import { todoStore } from "../store/index.js";
 
 export default {
   name: "TodoItem",
@@ -58,6 +59,10 @@ export default {
       type: Object,
     },
   },
+  setup() {
+    const store = todoStore();
+    return { store };
+  },
   computed: {
     id() {
       return this.item.id;
@@ -67,7 +72,8 @@ export default {
       return checked;
     },
     isItemSelected() {
-      const ids = this.$store.state.CheckedItem.map((item) => item.id);
+      const ids = this.store.CheckedItem.map((item) => item.id);
+
       const checked = ids.includes(this.id);
       return checked;
     },
@@ -78,7 +84,7 @@ export default {
       return "";
     },
     isSelect() {
-      return this.$store.state.IsSelect;
+      return this.store.IsSelect;
     },
     todoDate() {
       return dayjs(this.item.date).format("YY.MM.DD");
@@ -91,7 +97,7 @@ export default {
   },
   methods: {
     deleteTodoItem: function () {
-      this.$store.dispatch("deleteTodoItem", this.item.id);
+      this.store.deleteTodoItem(this.item.id);
     },
     showEditModal: function () {
       this.$refs.editModal.$refs.modal.show();
@@ -101,10 +107,10 @@ export default {
         id: this.item.id,
         isDone,
       };
-      this.$store.dispatch("updateTodoItem", item);
+      this.store.updateTodoItem(item);
     },
     updateCheckedItems: function () {
-      this.$store.commit("setCheckedItems", this.id);
+      this.store.setCheckedItems(this.id);
     },
   },
 };

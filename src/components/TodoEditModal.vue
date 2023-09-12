@@ -28,6 +28,7 @@ import dayjs from "dayjs";
 import ModalCommon from "./ModalCommon.vue";
 import Input from "./Input.vue";
 import Button from "./Button.vue";
+import { todoStore } from "../store/index.js";
 
 export default {
   props: {
@@ -39,6 +40,10 @@ export default {
     ModalCommon,
     Input,
     Button,
+  },
+  setup() {
+    const store = todoStore();
+    return { store };
   },
   data() {
     return {
@@ -57,7 +62,7 @@ export default {
         content: this.todoInputEdit,
         date: this.todoDate,
       };
-      this.$store.dispatch("updateTodoItem", item);
+      this.store.updateTodoItem(item);
       this.$refs.modal.hide();
     },
     closeModal: function () {

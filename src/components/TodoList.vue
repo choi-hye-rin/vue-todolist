@@ -56,11 +56,17 @@ import Button from "./Button.vue";
 import Select from "./Select.vue";
 import TodoCategory from "./TodoCategory.vue";
 
+import { todoStore } from "../store/index.js";
+
 export default {
   components: {
     Button,
     Select,
     TodoCategory,
+  },
+  setup() {
+    const store = todoStore();
+    return { store };
   },
   data() {
     return {
@@ -73,7 +79,7 @@ export default {
   },
   computed: {
     todoItems() {
-      return this.$store.state.TodoList;
+      return this.store.TodoList;
     },
     categorizedTodoItems() {
       const result = this.todoItems.reduce((acc, curr) => {
@@ -85,13 +91,13 @@ export default {
       return result;
     },
     isSelect() {
-      return this.$store.state.IsSelect;
+      return this.store.IsSelect;
     },
     checkedItems() {
-      return this.$store.state.CheckedItem;
+      return this.store.CheckedItem;
     },
     computedSort() {
-      const sort = this.$store.state.TodoSort;
+      const sort = this.store.TodoSort;
       if (sort === "createdAt") {
         return "등록 순";
       }
@@ -100,22 +106,22 @@ export default {
   },
   methods: {
     setIsSelect: function () {
-      this.$store.commit("setIsSelect");
-      this.$store.commit("resetCheckedItems");
+      this.store.setIsSelect();
+      this.store.resetCheckedItems();
     },
     removeSelectedItems: function () {
-      this.$store.dispatch("deleteAllTodos", this.checkedItems);
-      this.$store.commit("resetCheckedItems");
+      this.store.deleteAllTodos(this.checkedItems);
+      this.store.resetCheckedItems();
     },
     doneSelectedItems: function () {
-      this.$store.dispatch("updateAllTodoItems", this.checkedItems);
-      this.$store.commit("resetCheckedItems");
+      this.store.updateAllTodoItems(this.checkedItems);
+      this.store.resetCheckedItems();
     },
   },
   watch: {
     selectedSort: function (value) {
-      this.$store.commit("setTodoSort", value);
-      this.$store.dispatch("getTodoList", value);
+      this.store.setTodoSort(value);
+      this.store.getTodoList(value);
     },
   },
 };

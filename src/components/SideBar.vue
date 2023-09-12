@@ -26,12 +26,17 @@
 <script>
 import Button from "./Button.vue";
 import IconMenu from "./icon/IconMenu.vue";
+import { todoStore } from "../store/index.js";
 
 export default {
   name: "SideBar",
   components: {
     Button,
     IconMenu,
+  },
+  setup() {
+    const store = todoStore();
+    return { store };
   },
   data() {
     return {
@@ -52,7 +57,7 @@ export default {
   },
   computed: {
     todoItems() {
-      return this.$store.state.TodoList;
+      return this.store.TodoList;
     },
   },
   methods: {
@@ -63,7 +68,7 @@ export default {
       console.log("카테고리 수정하기 ");
     },
     removeAllItems: function () {
-      this.$store.dispatch("deleteAllTodos", this.todoItems);
+      this.store.deleteAllTodos(this.todoItems);
     },
   },
 };

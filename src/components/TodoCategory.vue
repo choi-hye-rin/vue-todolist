@@ -22,6 +22,7 @@
 import Button from "./Button.vue";
 import TodoItem from "./TodoItem.vue";
 import IconChevron from "./icon/IconChevron.vue";
+import { todoStore } from "../store/index.js";
 
 import utils from "../utils/util";
 
@@ -30,6 +31,10 @@ export default {
     TodoItem,
     Button,
     IconChevron,
+  },
+  setup() {
+    const store = todoStore();
+    return { store };
   },
   props: {
     todoItems: {
@@ -46,7 +51,7 @@ export default {
   },
   computed: {
     categoryLabel() {
-      return utils.getCategoryLabel(this.$store.state.Category, this.category);
+      return utils.getCategoryLabel(this.store.Category, this.category);
     },
   },
   methods: {
