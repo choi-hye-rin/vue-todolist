@@ -29,7 +29,7 @@ import dayjs from "dayjs";
 import Button from "./Button.vue";
 import Input from "./Input.vue";
 import MultiSelect from "./MultiSelectComponent.vue";
-import { todoStore } from "../store/index.js";
+import { useTodoStore } from "../store/modules/todos";
 
 import util from "../utils/util";
 
@@ -41,7 +41,7 @@ export default {
     MultiSelect,
   },
   setup() {
-    const store = todoStore();
+    const store = useTodoStore();
     return { store };
   },
   data() {

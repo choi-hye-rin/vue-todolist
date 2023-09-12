@@ -22,7 +22,7 @@
 import Button from "./Button.vue";
 import TodoItem from "./TodoItem.vue";
 import IconChevron from "./icon/IconChevron.vue";
-import { todoStore } from "../store/index.js";
+import { useTodoStore } from "../store/modules/todos";
 
 import utils from "../utils/util";
 
@@ -33,7 +33,7 @@ export default {
     IconChevron,
   },
   setup() {
-    const store = todoStore();
+    const store = useTodoStore();
     return { store };
   },
   props: {

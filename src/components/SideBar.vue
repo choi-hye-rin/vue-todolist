@@ -26,7 +26,7 @@
 <script>
 import Button from "./Button.vue";
 import IconMenu from "./icon/IconMenu.vue";
-import { todoStore } from "../store/index.js";
+import { useTodoStore } from "../store/modules/todos";
 
 export default {
   name: "SideBar",
@@ -35,7 +35,7 @@ export default {
     IconMenu,
   },
   setup() {
-    const store = todoStore();
+    const store = useTodoStore();
     return { store };
   },
   data() {

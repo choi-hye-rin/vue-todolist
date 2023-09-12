@@ -28,7 +28,7 @@ import dayjs from "dayjs";
 import ModalCommon from "./ModalCommon.vue";
 import Input from "./Input.vue";
 import Button from "./Button.vue";
-import { todoStore } from "../store/index.js";
+import { useTodoStore } from "../store/modules/todos";
 
 export default {
   props: {
@@ -42,7 +42,7 @@ export default {
     Button,
   },
   setup() {
-    const store = todoStore();
+    const store = useTodoStore();
     return { store };
   },
   data() {

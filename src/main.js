@@ -4,7 +4,8 @@ import axios from "axios";
 import VueRouter from "vue-router";
 
 import VueCompositionApi from "@vue/composition-api";
-import { createPinia, PiniaVuePlugin } from "pinia";
+import { PiniaVuePlugin } from "pinia";
+import pinia from "./store";
 
 import routes from "./routes";
 
@@ -12,7 +13,6 @@ import App from "./App.vue";
 
 Vue.use(VueCompositionApi);
 Vue.use(PiniaVuePlugin);
-const pinia = createPinia();
 
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;

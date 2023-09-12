@@ -14,7 +14,7 @@ import TodoInput from "../components/TodoInput.vue";
 import TodoList from "../components/TodoList.vue";
 
 import { defineComponent } from "@vue/composition-api";
-import { todoStore } from "../store/index.js";
+import { useTodoStore } from "../store/modules/todos";
 
 export default defineComponent({
   name: "TodoPage",
@@ -25,7 +25,7 @@ export default defineComponent({
     TodoList,
   },
   setup() {
-    const store = todoStore();
+    const store = useTodoStore();
     return { store };
   },
   methods: {},

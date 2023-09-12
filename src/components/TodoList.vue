@@ -56,7 +56,7 @@ import Button from "./Button.vue";
 import Select from "./Select.vue";
 import TodoCategory from "./TodoCategory.vue";
 
-import { todoStore } from "../store/index.js";
+import { useTodoStore } from "../store/modules/todos";
 
 export default {
   components: {
@@ -65,7 +65,7 @@ export default {
     TodoCategory,
   },
   setup() {
-    const store = todoStore();
+    const store = useTodoStore();
     return { store };
   },
   data() {
