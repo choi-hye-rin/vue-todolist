@@ -48,7 +48,7 @@ export default {
     return {
       todoInput: "",
       todoDate: dayjs().format("YYYY-MM-DD"),
-      selectedCategory: "",
+      selectedCategory: null,
     };
   },
   computed: {
@@ -66,7 +66,7 @@ export default {
       }
       const id = `${Math.random()}${dayjs().format("YYMMDDHHmmss")}`;
       const category =
-        this.selectedCategory.id === "" ? "1" : this.selectedCategory.id;
+        this.selectedCategory === null ? "1" : this.selectedCategory.id;
       const tempItem = {
         id,
         content: this.todoInput,
@@ -76,7 +76,8 @@ export default {
       };
       this.store.addTodoItem(tempItem);
       this.todoInput = "";
-      this.selectedCategory = "";
+      this.selectedCategory = null;
+      this.todoDate = dayjs().format("YYYY-MM-DD");
     },
 
     handleInput: function (value) {
