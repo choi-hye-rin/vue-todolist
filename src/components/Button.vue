@@ -42,5 +42,8 @@ button {
 
 .button-transparent {
   background-color: transparent;
+  padding: 5px;
+  font-size: 12px;
+  color: #cdcdcd;
 }
 </style>
