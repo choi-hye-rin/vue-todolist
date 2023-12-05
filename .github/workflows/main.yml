@@ -2,8 +2,17 @@ name: Our Workflow
 on:
   push:
     branches: [test]
+
+env:
+  WARNING_COLOR: "#FFBF00"
+  ERROR_COLOR: "#DF013A"
+  SUCCESS_COLOR: "#04B404"
+
 jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
       - run: ls -al
+      - uses: actions/checkout@v4
+      - run: ls -al
+      - run: cat .github/workflows/checkout.yml
