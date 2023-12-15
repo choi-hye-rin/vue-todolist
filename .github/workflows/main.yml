@@ -12,6 +12,8 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - id: set-name
-        run: echo "name=fastfive" >> "$GITHUB_OUTPUT"
-      - run: echo ${{ steps.set-name.outputs.name }}
+      - id: random
+        run: exit $(($RANDOM % 2 == 0))
+      - id: always
+        if: always()
+        run: echo ${{steps.random.outcome}}
